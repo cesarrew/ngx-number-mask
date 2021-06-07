@@ -1,22 +1,22 @@
 import { AfterViewInit, Directive, DoCheck, ElementRef, forwardRef, HostListener, Inject, Input, KeyValueDiffer, KeyValueDiffers, OnInit, Optional } from "@angular/core";
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from "@angular/forms";
-import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from "./currency-mask.config";
 import { InputHandler } from "./input.handler";
+import { NumberMaskConfig, NUMBER_MASK_CONFIG } from "./number-mask.config";
 
-export const CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR: any = {
+export const NUMBERMASKDIRECTIVE_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CurrencyMaskDirective),
+    useExisting: forwardRef(() => NumberMaskDirective),
     multi: true
 };
 
 @Directive({
-    selector: "[currencyMask]",
+    selector: "[numberMask]",
     providers: [
-        CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR,
-        { provide: NG_VALIDATORS, useExisting: CurrencyMaskDirective, multi: true }
+        NUMBERMASKDIRECTIVE_VALUE_ACCESSOR,
+        { provide: NG_VALIDATORS, useExisting: NumberMaskDirective, multi: true }
     ]
 })
-export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccessor, DoCheck, OnInit, Validator {
+export class NumberMaskDirective implements AfterViewInit, ControlValueAccessor, DoCheck, OnInit, Validator {
 
     @Input() max: number;
     @Input() min: number;
@@ -35,9 +35,9 @@ export class CurrencyMaskDirective implements AfterViewInit, ControlValueAccesso
         thousands: ","
     };
 
-    constructor(@Optional() @Inject(CURRENCY_MASK_CONFIG) private currencyMaskConfig: CurrencyMaskConfig, private elementRef: ElementRef, private keyValueDiffers: KeyValueDiffers) {
-        if (currencyMaskConfig) {
-            this.optionsTemplate = currencyMaskConfig;
+    constructor(@Optional() @Inject(NUMBER_MASK_CONFIG) private numberMaskConfig: NumberMaskConfig, private elementRef: ElementRef, private keyValueDiffers: KeyValueDiffers) {
+        if (numberMaskConfig) {
+            this.optionsTemplate = numberMaskConfig;
         }
 
         this.keyValueDiffer = keyValueDiffers.find({}).create();

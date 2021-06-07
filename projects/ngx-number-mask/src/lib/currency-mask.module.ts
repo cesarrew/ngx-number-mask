@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { CurrencyMaskDirective } from "./currency-mask.directive";
+import { NumberMaskDirective } from "./number-mask.directive";
 
 @NgModule({
     imports: [
@@ -9,11 +9,11 @@ import { CurrencyMaskDirective } from "./currency-mask.directive";
         FormsModule
     ],
     declarations: [
-        CurrencyMaskDirective
+        NumberMaskDirective
     ],
     exports: [
-        CurrencyMaskDirective
+        NumberMaskDirective
     ]
 })
-export class CurrencyMaskModule {
+export class NumberMaskModule {
 }
